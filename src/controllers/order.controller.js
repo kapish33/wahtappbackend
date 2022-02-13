@@ -27,36 +27,19 @@ router.get("/", async (req, res) => {
     return res.status(500).json({ status: "failed", message: e.message });
   }
 });
-/*
-{
-    key: { type: String, required: true },
-    value: { type: String, required: true, unique: true },
-  }
-*/
-// update if key exists
-router.patch("/:key", async (req, res) => {
+
+router.patch("/:id", async (req, res) => {
   try {
-    //   find key
-    const order = await Orders.findOne({ key: req.params.key });
-    if (order) {
-      const order = await Orders.findOneAndUpdate(
-        { key: req.params.key },
-        req.body,
-        { new: true }
-      );
-      res.status(200).send(order);
-    }
+    const order = await Orders.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).send(order);
   } catch (e) {
     return res.status(500).json({ status: "failed", message: e.message });
   }
 });
-// delete as per key
-router.delete("/:key", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
-    const order = await Orders.findOneAndDelete({ key: req.params.key });
-    if (order) {
-      res.status(200).send(order);
-    }
+    const order = await Orders.findByIdAndDelete(req.params.id);
+    res.status(200).send(order);
   } catch (e) {
     return res.status(500).json({ status: "failed", message: e.message });
   }
