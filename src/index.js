@@ -12,6 +12,6 @@ app.use(cors());
 // app.use("/users", userController) // /register /login
 
 app.use("/commands", orderController);
-app.use("/", userController);
+app.use("/users", userController);
 
 module.exports = app;
