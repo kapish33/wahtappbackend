@@ -12,11 +12,13 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/:type", async (req, res) => {
   // get all cources wich have starting date greater than today Date() 2022-03-09T02:05:00.000+00:00
+  // and with courcesName: Sudarshan%20Kriya
   try {
     const cources = await Cources.find({
       startDateTime: { $gte: new Date() },
+      courcesName: { $regex: req.params.type, $options: "i" },
     });
     res.status(200).send(cources);
   } catch (e) {
