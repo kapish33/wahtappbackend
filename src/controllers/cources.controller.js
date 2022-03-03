@@ -25,5 +25,33 @@ router.get("/:type", async (req, res) => {
     return res.status(500).json({ status: "failed", message: e.message });
   }
 });
-
+// delete all cources which is older than today Date() 2022-03-09T02:05:00.000+00:00
+router.delete("/", async (req, res) => {
+  try {
+    const cources = await Cources.deleteMany({
+      startDateTime: { $lt: new Date() },
+    });
+    res.status(200).send(cources);
+  } catch (e) {
+    return res.status(500).json({ status: "failed", message: e.message });
+  }
+});
+// get all cources
+router.get("/", async (req, res) => {
+  try {
+    const cources = await Cources.find();
+    res.status(200).send(cources);
+  } catch (e) {
+    return res.status(500).json({ status: "failed", message: e.message });
+  }
+});
+// delete cource by id
+router.delete("del/:id", async (req, res) => {
+  try {
+    const cource = await Cources.findByIdAndDelete(req.params.id);
+    res.status(200).send(cource);
+  } catch (e) {
+    return res.status(500).json({ status: "failed", message: e.message });
+  }
+});
 module.exports = router;
