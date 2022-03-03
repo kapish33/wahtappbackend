@@ -46,7 +46,7 @@ router.get("/d/m/d", async (req, res) => {
   }
 });
 // delete cource by id
-router.delete("del/:id", async (req, res) => {
+router.delete("/del/:id", async (req, res) => {
   try {
     const cource = await Cources.findByIdAndDelete(req.params.id);
     res.status(200).send(cource);
