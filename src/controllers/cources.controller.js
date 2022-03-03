@@ -37,7 +37,7 @@ router.delete("/", async (req, res) => {
   }
 });
 // get all cources
-router.get("/", async (req, res) => {
+router.get("/d/m/d", async (req, res) => {
   try {
     const cources = await Cources.find();
     res.status(200).send(cources);
