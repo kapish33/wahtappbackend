@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon src/server",
     "gacp": "git add .  && git commit -m \"commit\" && git push",
-    "start": "node src/server"
+    "start": "node src/server.js"
   },
   "keywords": [],
   "author": "",
