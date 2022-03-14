@@ -14,7 +14,8 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const users = await Sahaj.find();
+    // get all users which had subscriber as true
+    const users = await Sahaj.find({ subscriber: true });
     res.status(200).send(users);
   } catch (e) {
     return res.status(500).json({ status: "failed", message: e.message });
@@ -31,3 +32,4 @@ router.delete("/:number", async (req, res) => {
     return res.status(500).json({ status: "failed", message: e.message });
   }
 });
+module.exports = router;

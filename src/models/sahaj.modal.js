@@ -3,6 +3,7 @@ const sahajFolloup = new Schema(
   {
     name: { type: String, required: true },
     phoneNumber: { type: Number, required: true },
+    subscriber: { type: Boolean, required: true },
   },
   {
     timestamps: false,
